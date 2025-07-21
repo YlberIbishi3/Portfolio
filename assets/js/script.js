@@ -1,3 +1,37 @@
+// Contact form submission handler
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.form[data-form]');
+  if (form) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const fullname = form.querySelector('input[name="fullname"]').value;
+      const email = form.querySelector('input[name="email"]').value;
+      const message = form.querySelector('textarea[name="message"]').value;
+
+      // Optionally disable the button to prevent multiple submits
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+
+      try {
+        const response = await fetch('http://localhost:3001/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullname, email, message })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert('Message sent successfully!');
+          form.reset();
+        } else {
+          alert(data.error || 'Failed to send message.');
+        }
+      } catch (err) {
+        alert('Failed to send message. Please try again later.');
+      }
+      if (btn) btn.disabled = false;
+    });
+  }
+});
 'use strict';
 
 
