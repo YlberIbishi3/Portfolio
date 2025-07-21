@@ -1,4 +1,138 @@
+/* Sidebar mobile layout and spacing refinement */
+/* Avatar box and avatar image responsive alignment */
+.avatar-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 1.5rem auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.avatar-hover-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+
+.avatar-hover-wrapper img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #23232b;
+  box-shadow: none;
+  border: none;
+}
+
+.avatar-hover-wrapper {
+  border: 3px solid #a259ff;
+  box-shadow: 0 0 0 4px rgba(162,89,255,0.10);
+  border-radius: 50%;
+  background: #23232b;
+}
+/* Sidebar mobile alignment fix */
+@media (max-width: 600px) {
+  .sidebar-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .avatar-box {
+    margin-bottom: 1rem;
+    align-self: flex-start;
+  }
+  .info-content {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+  .info_more-btn {
+    margin: 0 0 1rem 0;
+    display: block;
+    align-self: flex-start;
+  }
+  .sidebar-info_more {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .contacts-list {
+    padding-left: 0;
+    margin: 0;
+  }
+  .contact-item {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .social-list {
+    justify-content: flex-start;
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .avatar-hover-wrapper,
+  .avatar-hover-wrapper img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 400px) {
+  .avatar-hover-wrapper,
+  .avatar-hover-wrapper img {
+    width: 48px;
+    height: 48px;
+  }
+}
+/* Avatar hover overlay cursor */
+.avatar-hover-wrapper {
+  cursor: pointer;
+}
+
+.avatar-hover-overlay {
+  cursor: pointer;
+}
+/* Avatar hover effect (sidebar) */
+.avatar-hover-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.avatar-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(40,40,40,0.65);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+.avatar-hover-wrapper:hover .avatar-hover-overlay {
+  opacity: 1;
+}
 /* Make the avatar modal close button (X) bigger */
+
 #avatar-modal.active #avatar-modal-close-btn {
   width: 56px;
   height: 56px;
@@ -14,6 +148,94 @@
   color: #fff;
   opacity: 0.95;
   transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+/* Avatar Modal Name (top left) */
+
+/* Avatar Modal Header (top left, aligned with close X) */
+#avatar-modal.active #avatar-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 1003;
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  padding: 18px 28px 14px 24px;
+  min-width: 210px;
+  gap: 6px;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+#avatar-modal.active #avatar-modal-header:hover {
+  box-shadow: 0 8px 32px 0 rgba(162,89,255,0.18);
+  background: var(--bg-gradient-onyx);
+}
+#avatar-modal-header {
+  display: none;
+}
+
+#avatar-modal-header #avatar-modal-name {
+  color: var(--white-2);
+  font-size: 2rem;
+  font-weight: var(--fw-600);
+  letter-spacing: -0.5px;
+  margin-bottom: 2px;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  background: none;
+  padding: 0;
+}
+#avatar-modal-header #avatar-modal-title {
+  color: var(--orange-yellow-crayola);
+  background: var(--onyx);
+  font-size: 1rem;
+  font-weight: var(--fw-400);
+  padding: 4px 16px 4px 12px;
+  border-radius: 8px;
+  width: max-content;
+  margin-top: 2px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  letter-spacing: 0.1em;
+}
+
+/* Avatar Modal Download CV (bottom left) */
+#avatar-modal.active #avatar-modal-cv {
+  display: block;
+}
+#avatar-modal-cv {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #avatar-modal.active #avatar-modal-header {
+    top: 12px;
+    left: 12px;
+    padding: 12px 14px 10px 12px;
+    min-width: 0;
+  }
+  #avatar-modal-header #avatar-modal-name {
+    font-size: 1.2rem;
+  }
+  #avatar-modal-header #avatar-modal-title {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    padding: 2px 8px;
+  }
+  #avatar-modal.active #avatar-modal-cv {
+    left: 12px;
+    bottom: 12px;
+  }
+  #avatar-modal.active #avatar-modal-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
 }
 
 #avatar-modal.active #avatar-modal-close-btn:hover {
@@ -57,36 +279,38 @@
 
 /* Unique, seamless floating animations for each circle */
 @keyframes float-circle-1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  25%  { transform: translate(40px, -30px) scale(1.04); }
-  50%  { transform: translate(60px, 30px) scale(1.07); }
-  75%  { transform: translate(-30px, 40px) scale(1.03); }
-  100% { transform: translate(0, 0) scale(1); }
+  0%   { transform: translate(-200px, -100px) scale(1); }
+  20%  { transform: translate(200px, -200px) scale(1.08); }
+  40%  { transform: translate(300px, 200px) scale(1.12); }
+  60%  { transform: translate(-100px, 300px) scale(1.06); }
+  80%  { transform: translate(-300px, 100px) scale(1.04); }
+  100% { transform: translate(-200px, -100px) scale(1); }
 }
 @keyframes float-circle-2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  20%  { transform: translate(-30px, 30px) scale(1.02); }
-  40%  { transform: translate(-60px, -20px) scale(1.05); }
-  60%  { transform: translate(20px, -40px) scale(1.03); }
-  80%  { transform: translate(40px, 20px) scale(1.06); }
-  100% { transform: translate(0, 0) scale(1); }
+  0%   { transform: translate(150px, 200px) scale(1); }
+  20%  { transform: translate(-200px, 150px) scale(1.05); }
+  40%  { transform: translate(-300px, -100px) scale(1.09); }
+  60%  { transform: translate(100px, -250px) scale(1.07); }
+  80%  { transform: translate(250px, 100px) scale(1.04); }
+  100% { transform: translate(150px, 200px) scale(1); }
 }
 @keyframes float-circle-3 {
   0%   { transform: translate(0, 0) scale(1); }
-  30%  { transform: translate(20px, -20px) scale(1.03); }
-  60%  { transform: translate(-40px, 30px) scale(1.06); }
-  80%  { transform: translate(30px, 40px) scale(1.04); }
+  20%  { transform: translate(120px, -120px) scale(1.06); }
+  40%  { transform: translate(-180px, 120px) scale(1.12); }
+  60%  { transform: translate(120px, 180px) scale(1.08); }
+  80%  { transform: translate(-120px, -60px) scale(1.04); }
   100% { transform: translate(0, 0) scale(1); }
 }
 }
 .bg-gradient-circle.bg-gradient-circle-1 {
-  animation: float-circle-1 12s ease-in-out infinite alternate;
+  /* Parallax effect replaces animation */
 }
 .bg-gradient-circle.bg-gradient-circle-2 {
-  animation: float-circle-2 16s ease-in-out infinite alternate;
+  /* Parallax effect replaces animation */
 }
 .bg-gradient-circle.bg-gradient-circle-3 {
-  animation: float-circle-3 14s ease-in-out infinite alternate;
+  /* Parallax effect replaces animation */
 }
 
 .bg-gradient-circle-1 {
@@ -555,7 +779,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 420px; }
 
 .sidebar-info {
   position: relative;
@@ -895,7 +1119,7 @@ main {
 }
 
 .overlay.active {
-  opacity: 0.8;
+  opacity: 0.9;
   visibility: visible;
   pointer-events: all;
 }
@@ -1578,7 +1802,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-bottom: 30px;
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 700px; }
 
   .sidebar-info { gap: 25px; }
 
