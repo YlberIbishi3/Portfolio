@@ -1,7 +1,141 @@
+/* Make the avatar modal close button (X) bigger */
+#avatar-modal.active #avatar-modal-close-btn {
+  width: 56px;
+  height: 56px;
+  font-size: 2.5rem;
+  top: 24px;
+  right: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1003;
+  background: rgba(40,40,40,0.7);
+  color: #fff;
+  opacity: 0.95;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+#avatar-modal.active #avatar-modal-close-btn:hover {
+  background: #a259ff;
+  color: #fff;
+  opacity: 1;
+}
+/* Ensure avatar modal image is always full color, not greyed out */
+#avatar-modal-img {
+  filter: none !important;
+  opacity: 1 !important;
+  background: none !important;
+  z-index: 2;
+}
+/* Make the avatar modal image even bigger */
+#avatar-modal-img {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 6px solid #a259ff;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+  z-index: 1002;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+/* Removed fly-in and fly-in-all animation code */
+/* Purple gradient circles background */
+.bg-gradient-circle {
+  position: fixed;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  filter: blur(200px);
+  transition: opacity 0.3s;
+  /* Remove shared animation, will add unique ones per circle */
+
+
+
+/* Unique, seamless floating animations for each circle */
+@keyframes float-circle-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(40px, -30px) scale(1.04); }
+  50%  { transform: translate(60px, 30px) scale(1.07); }
+  75%  { transform: translate(-30px, 40px) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes float-circle-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(-30px, 30px) scale(1.02); }
+  40%  { transform: translate(-60px, -20px) scale(1.05); }
+  60%  { transform: translate(20px, -40px) scale(1.03); }
+  80%  { transform: translate(40px, 20px) scale(1.06); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes float-circle-3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  30%  { transform: translate(20px, -20px) scale(1.03); }
+  60%  { transform: translate(-40px, 30px) scale(1.06); }
+  80%  { transform: translate(30px, 40px) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+}
+.bg-gradient-circle.bg-gradient-circle-1 {
+  animation: float-circle-1 12s ease-in-out infinite alternate;
+}
+.bg-gradient-circle.bg-gradient-circle-2 {
+  animation: float-circle-2 16s ease-in-out infinite alternate;
+}
+.bg-gradient-circle.bg-gradient-circle-3 {
+  animation: float-circle-3 14s ease-in-out infinite alternate;
+}
+
+.bg-gradient-circle-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -200px;
+  background: radial-gradient(circle at 40% 40%, #a259ff 0%, #6a00f4 70%, #4f8cff 95%, transparent 100%);
+}
+
+.bg-gradient-circle-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -150px;
+  right: -150px;
+  background: radial-gradient(circle at 60% 60%, #a259ff 0%, #6a00f4 70%, #4fdfff 95%, transparent 100%);
+}
+
+.bg-gradient-circle-3 {
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%, #a259ff 0%, #f64fdf 70%, #4f8cff 95%, transparent 100%);
+}
+
+body, main, .main-content, .sidebar, .sidebar-info_more {
+  position: relative;
+  z-index: 1;
+}
 @media (max-width: 800px) {
   .sidebar {
-    max-height: none !important;
-    overflow: visible !important;
+    max-height: 112px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    transition: var(--transition-2);
+  }
+  .sidebar.active {
+    max-height: 405px;
+  }
+  .sidebar-info_more {
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-2);
+  }
+  .sidebar.active .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
   }
   .download-cv-section {
     margin-bottom: 2rem;
@@ -43,7 +177,6 @@
   color: var(--eerie-black-1);
   box-shadow: var(--shadow-3);
 }
-
 @media (max-width: 580px) {
   .download-cv-section {
     margin-top: 1.5rem;
@@ -215,6 +348,13 @@ article {
   z-index: 1;
 }
 
+@media (max-width: 800px) {
+  /* Remove background override so sidebar always has the same background, border, and shadow */
+  .sidebar:not(.active) {
+    /* No background override */
+  }
+}
+
 .separator {
   width: 100%;
   height: 1px;
@@ -265,11 +405,10 @@ article {
 }
 
 .download-cv-btn:hover,
-.download-cv-btn:focus {
+download-cv-btn:focus {
   background: var(--bg-gradient-yellow-1);
   color: var(--eerie-black-1);
   box-shadow: var(--shadow-3);
-}
 }
 
 .icon-box::before {
@@ -285,15 +424,35 @@ article {
 
 article { display: none; }
 
+
 article.active {
   display: block;
-  animation: fade 0.5s ease backwards;
 }
 
-@keyframes fade {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+/* Fly-in animation for all main components */
+/* Fly-in animation for all main components */
+.fly-in {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: fly-in 0.9s cubic-bezier(0.4,0,0.2,1) forwards;
 }
+
+@keyframes fly-in {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 .h2,
 .h3,
@@ -408,7 +567,18 @@ main {
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+  border-radius: 50%;
+  border: 3px solid #a259ff; /* Same purple as used in gradients */
+  box-shadow: 0 0 0 5px rgba(162,89,255,0.15); /* subtle glow */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1 / 1;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .info-content .name {
@@ -1412,9 +1582,14 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { gap: 25px; }
 
-  .avatar-box { border-radius: 30px; }
 
-  .avatar-box img { width: 120px; }
+.avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
 
   .info-content .name { margin-bottom: 15px; }
 
@@ -1954,4 +2129,3 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
-}

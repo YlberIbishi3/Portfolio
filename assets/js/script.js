@@ -1,3 +1,31 @@
+// Avatar modal logic (same as testimonials modal)
+const mainAvatarImg = document.getElementById("main-avatar-img");
+const avatarModalContainer = document.getElementById("avatar-modal-container");
+const avatarModal = document.getElementById("avatar-modal");
+const avatarModalCloseBtn = document.getElementById("avatar-modal-close-btn");
+const avatarModalOverlay = document.getElementById("avatar-modal-overlay");
+
+function openAvatarModal() {
+  avatarModalContainer.style.display = "flex";
+  setTimeout(() => {
+    avatarModalContainer.classList.add("active");
+    avatarModal.classList.add("active");
+    avatarModalOverlay.classList.add("active");
+  }, 10);
+}
+function closeAvatarModal() {
+  avatarModalContainer.classList.remove("active");
+  avatarModal.classList.remove("active");
+  avatarModalOverlay.classList.remove("active");
+  setTimeout(() => {
+    avatarModalContainer.style.display = "none";
+  }, 250);
+}
+if (mainAvatarImg && avatarModalContainer && avatarModal && avatarModalCloseBtn && avatarModalOverlay) {
+  mainAvatarImg.addEventListener("click", openAvatarModal);
+  avatarModalCloseBtn.addEventListener("click", closeAvatarModal);
+  avatarModalOverlay.addEventListener("click", closeAvatarModal);
+}
 // Contact form submission handler
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.form[data-form]');
@@ -26,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
           alert(data.error || 'Failed to send message.');
         }
       } catch (err) {
-        alert('Failed to send message. Please try again later.');
+        alert('Failed to send message. Please try again later. Alternatively, you can contact me via email at ylberibishi03@gmail.com');
       }
       if (btn) btn.disabled = false;
     });
